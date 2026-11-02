@@ -1,17 +1,25 @@
-# S0 restricted stochastic fold: theorem and proof draft
+# S0 restricted stochastic fold — revised theorem (2026-11-02)
 
-Status: author-derived, not independent reproduction, not novelty claim. Documentation/proof only; no numerical execution.
+**Status:** revised after user-provided Manus AI audit. Restricted one-coefficient theorem only; no G1 authorization, no full 35D lifetime theorem.
 
-Define N(t,m)=m(1-3t^2)+3t^2-4t^3-t^4 and phi(t)=(-3t^2+4t^3+t^4)/(1-3t^2). For sufficiently small delta>0, phi is strictly increasing on (-delta,0) and strictly decreasing on (0,delta), with phi(0)=0 and phi(t)<0 for 0<|t|<delta. Define branch domains I_+= (0,delta), I_-=(-delta,0), and J_±=phi(I_±)=(phi(±delta),0) (endpoints may differ).
+## Definitions and exact algebra
+For the ordered-index contraction f_T(x)=sum_{ijkl}T_ijkl x_i x_j x_k x_l, take f_mu(x)=x1^4+mu*x1^3*x2+2*x1²*x2²+x1*x2³. At mu=0,x=e1, lambda=1 and H on x-perp (basis e2,e3,e4) equals diag(0,-1,-1); H is one quarter of the spherical Riemannian Hessian. With x=(1,t,0,0)/sqrt(1+t²), g=(1+mu*t+2t²+t³)/(1+t²)² and
 
-Let m_s=m0+2 sigma W_s with sigma>0 and m0 in J_±. Let t_s=psi_±(m_s), where psi_± is the inverse of phi on I_±, stopped at rho=inf{s>=0:m_s not in J_±}. Then t_s is adapted and continuous up to rho, and for s<rho Ito gives
- dt_s = [2 sigma/phi'(t_s)] dW_s - [2 sigma^2 phi''(t_s)/(phi'(t_s))^3] ds.
-This is an exact stopped SDE for the restricted ONE-COEFFICIENT tensor family. Proof: inverse-function theorem, psi'=1/phi', psi''=-phi''/(phi')^3, Ito formula with (dm)^2=4 sigma^2 ds.
+g_t=[mu*(1-3t²)+3t²-4t³-t⁴]/(1+t²)³.
 
-Let tau0=inf{s:m_s=0}. The unrestricted coefficient hitting-time CDF is P(tau0<=s)=2[1-Phi(|m0|/(2 sigma sqrt(s)))], s>0, by reflection principle; density |m0|/(2 sigma sqrt(2 pi s^3))*exp[-m0^2/(8 sigma^2 s)]. IMPORTANT: rho may occur earlier at the opposite boundary phi(±delta). Therefore tau0 is NOT in general the lifetime of the locally stopped eigenvector branch. The exact event of fold-reaching before chart exit is {tau0<tauL}, where L=phi(±delta)<m0<0; its probability is (m0-L)/(0-L), by harmonicity/gambler's ruin. No unqualified identification of tau0 with branch death is permitted.
+**The +3t² term is mandatory.** Thus phi(t)=(-3t²+4t³+t⁴)/(1-3t²)=-3t²+4t³+10t⁴+O(t⁵). For small mu<0, there are two local branches; for mu>0, none. The fold is quadratic, not cubic-leading.
 
-The 35-dimensional Frobenius-isotropic tensor Brownian process is not confined to this one-coefficient family. This theorem does not describe its exact fold-coordinate process or full branch survival law.
+## Stopped inverse theorem
+Fix sigma>0 and delta>0 sufficiently small so phi'<0 on (0,delta), phi'>0 on (-delta,0), phi(t)<0 for nonzero |t|<=delta, and 1-3delta²>0. For either sign epsilon in {+,-}, set I_+=(0,delta), I_-=(-delta,0), L_epsilon=phi(epsilon*delta)<0 and J_epsilon=(L_epsilon,0). Let mu0 in J_epsilon, W standard BM on a usual filtered probability space, mu_s=mu0+2sigma W_s, tau0=inf{s>=0:mu_s=0}, tauL=inf{s>=0:mu_s=L_epsilon}, rho=tau0 wedge tauL. All are stopping times; tau0 and tauL are individually finite almost surely for one-dimensional driftless BM, and rho is finite almost surely. Let psi_epsilon=(phi|I_epsilon)^(-1). For s<rho, t_s=psi_epsilon(mu_s) is adapted, continuous and a semimartingale locally. For each compact subinterval J' of J_epsilon, stop at its exit before applying Ito; then
 
-Source: standard Brownian reflection principle and first passage, Cambridge University Press Brownian Motion chapter https://doi.org/10.1017/CBO9781139087698.003 . Related but distinct slow-fast dynamics: Bergeot, Berglund, Zogheib, Nonlinearity 39 075004 (2026), https://doi.org/10.1088/1361-6544/ae7ec0 .
+dt_s = [2sigma/phi'(t_s)]dW_s - [2sigma² phi''(t_s)/(phi'(t_s))³]ds, s<rho,
 
-Proof obligations remaining: choose explicit delta bounds if needed; external independent check of inverse branches, stopping conventions, and finite-interval hitting probability; theorem-level novelty audit.
+in the local/stopped sense. Coefficients diverge approaching t=0, and no Ito decomposition through rho is asserted. On tau0<tauL, t_s tends to 0; on tauL<tau0, it tends to epsilon*delta. The latter is an artificial local cutoff, not singularity or global branch death.
+
+## Hitting probabilities and scope
+P(tau0<=s)=2[1-Phi(|mu0|/(2sigma sqrt(s)))], s>0; f_tau0(s)=|mu0|/(2sigma sqrt(2pi s³))*exp[-mu0²/(8sigma²s)]. These are for **unrestricted scalar coefficient first hitting of zero**, not for the killed interval lifetime rho. P(tau0<tauL)=(mu0-L_epsilon)/(-L_epsilon). Exact time-resolved two-sided exit requires separate calculation. No transfer of these formulas to full 35D tensor branch survival.
+
+The 1112 Frobenius-unit orbit has four entries 1/2 and quartic polynomial 2x1³x2. Therefore dmu=2sigma dW_1112 and d[mu]=4sigma²ds for the **raw polynomial coefficient**, not for a nonlinear 35D fold-control coordinate.
+
+## Remaining
+Independent check of full local continuation; 35D parameter-dependent Lyapunov-Schmidt proof; first-singularity definition; theorem-level novelty audit. S0 remains REVISE, not accepted.
