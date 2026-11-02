@@ -1,7 +1,11 @@
-# Environment plan — not executed
+# Rust-first environment plan — not executed
 
-Target: Windows / PowerShell with Python 3.12, no WSL requirement. Mathematical Gate 0 needs no GPU or external compute.
+Decision (2026-11-02): Rust is the proposed primary numerical language, pending owner review of this draft PR. Windows / PowerShell, stable rustc and cargo; no WSL, GPU or Python requirement.
 
-Future implementation, only after approval: isolated .venv, pinned dependency lockfile, minimal NumPy/SciPy/SymPy stack as justified, pytest for deterministic checks, explicit random seeds, no network in tests, and artifact manifest.
+Candidate dependencies (versions to be pinned only at implementation authorization): nalgebra for small tangent matrices, ndarray or a custom 35-coefficient symmetric-tensor representation, rand + rand_distr for Gaussian increments, serde/serde_json for manifests, thiserror for explicit errors. Confirm crate-version compatibility before locking.
 
-No dependencies installed and no runtime validation performed by this setup commit.
+Architecture: separate exact mathematical definitions, deterministic algebraic kernels, Brownian path generation, eigenpair continuation, diagnostics and output provenance. Fully symmetric order-four dimension-four tensors have 35 independent coefficients; choose orthonormal Sym^4 basis and explicitly specify covariance before sampling.
+
+Planned checks: contraction/permutation symmetry, Z-eigenpair residual, tangent-Hessian projection, sign-invariant overlap, fixed-seed repeatability, finite-difference checks, convergence and branch-loss handling.
+
+No Cargo project initialized, dependencies installed, code compiled, or numerical validation executed. Gate 0 remains documentation-only.
