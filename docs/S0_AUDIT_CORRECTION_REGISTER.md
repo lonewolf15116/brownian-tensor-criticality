@@ -23,3 +23,6 @@ Source: owner-provided Independent Mathematical Audit of Brownian Tensor Critica
 - The inverse branch is continuous on [0,rho) and admits a finite one-sided limit at rho; no regular inverse is asserted at the fold or artificial boundary.
 - Describe its stochastic differential as an **exact pre-stopping Itô equation**, valid for s<rho under compact localization, rather than an unqualified 'exact stopped SDE'.
 - S0 remains revised, not accepted; G1, numerical experiments and PR merge remain blocked.
+
+## 2026-11-02 proof-only 35D local theorem draft
+A full parameter-dependent Lyapunov–Schmidt **local proof draft** now exists at `math/S0_35D_LOCAL_FOLD_LS_AND_HITTING_THEOREM.md` (commit `4bfd2686`). It eliminates the two transverse chart coordinates by IFT, defines a smooth fold-control a(T), proves a local codimension-one sheet and two local regular roots on a<0, constructs adapted local branch selections and stopping times, and gives a positive-probability Brownian tube argument for reaching local H-degeneracy from suitable nearby starts. **This has not yet undergone independent line-by-line verification.** It is not a global branch continuation, branch-death distribution, almost-sure hitting theorem, or novelty result. S0 acceptance and G1 remain blocked pending independent proof scrutiny and owner decision.
