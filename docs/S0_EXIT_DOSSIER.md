@@ -1,23 +1,11 @@
-# S0 exit dossier — ready for owner review, not approval of G1
+# S0 exit dossier — REVISE, not accepted (2026-11-02)
 
-Date: 2026-11-02. Scope: documentation and mathematical proofs only. No Rust, numerical runs, or PR merge.
+Owner requested S0 revision following the uploaded Manus AI independent mathematical audit. Audit states Round 1 from definitions and tasks, Round 2 against solution files; external methods and identity are not independently authenticated. The audit supports the local corank-one fold, stopped inverse Ito equation, Frobenius normalization, and correct scalar first-passage formulas. It identifies an omitted +3t² term and reversed mu-side in a derivation; source-level verification of the core fold, Brownian projection, inverse theorem, stopping scrutiny, and final proof audit shows correct formula in those checked files. The audit's precise offending source remains unresolved; do not claim a located file was repaired without finding it.
 
-## Completed internal mathematical checks
-- Tensor quartic coefficients and tangent-Hessian conventions checked for regular examples.
-- Explicit corank-one singular Z-eigenpair constructed with H eigenvalues (0,-1,-1).
-- Exact reduced fold equation and generic nondegeneracy derivatives established; local transverse eigenvector equations exclude extra branches near e1.
-- Frobenius-isotropic 35-dimensional tensor Brownian noise projected onto the fold-normal coordinate: variance rate 4*sigma^2 for the quartic coefficient mu.
+**Canonical algebra:** g_t=[mu(1-3t²)+3t²-4t³-t⁴]/(1+t²)³. phi(t)=(-3t²+4t³+t⁴)/(1-3t²). Nearby fold pair exists for mu<0 only. H restricted to x-perp is diag(0,-1,-1) and is one quarter the Riemannian Hessian of f.
 
-## Literature overlap
-Hu, *Nondegeneracy of eigenvectors and singular vector tuples of tensors*, arXiv:2104.05900 (published Science China Mathematics 2022, DOI 10.1007/s11425-020-1863-5): generic nondegeneracy of tensor Z-eigenvectors. https://arxiv.org/abs/2104.05900
-Bergeot, Berglund & Zogheib, *The dynamic saddle-node bifurcation with noise on the slow variable*, Nonlinearity 39 (2026) 075004, DOI 10.1088/1361-6544/ae7ec0: stochastic fold with noise on slow variable, not automatically the same as a static-constraint branch selected from Brownian tensor coefficients. https://doi.org/10.1088/1361-6544/ae7ec0
-Hu & Qi, *The E-eigenvectors of tensors*, https://arxiv.org/abs/1303.2840: algebraic eigenvector and discriminant geometry. The theorem-level comparison is not exhaustive.
+**Restricted theorem:** mu_s=mu0+2sigma W_s, d[mu]=4sigma²ds for polynomial coefficient; t_s=phi^{-1}(mu_s) only until rho=tau0 wedge tauL, with Ito coefficients localized on compact regular subintervals. One-sided reflection law is for tau0 alone, not rho or full tensor lifetime. Chart exit != Hessian singularity != local pair loss != global branch death.
 
-## Unresolved / blocked
-- External independent verification of algebra and complete theorem-level novelty audit.
-- Rigorous stochastic continuation, measurable branch selection, and exact first-singularity stopping time.
-- Curved discriminant geometry, non-transverse Brownian paths, multiple-mode and higher-order singularities.
-- Exact survival distributions and critical scaling; no discovery established.
+**Full 35D:** regular branch IFT holds locally, with sign gauge and relatively compact stopping neighborhood. Tensor Brownian image Ito formula is structural and includes D²X. A complete parameter-dependent Lyapunov-Schmidt reduction, smooth local discriminant sheet, normal-noise/hitting proof, and measurable branch continuation remain open. No global first-singularity distribution, universal scaling, or confirmed novelty.
 
-## S0 disposition
-Documentation package assembled for owner review. **S0 not formally closed**; owner must decide accept/revise. G1 remains BLOCKED. PR #1 remains draft/unmerged. Confirmed novel discoveries: 0.
+**Disposition:** S0 REVISE; not formally closed. G1, numerical/Rust work, external release beyond owner-shared review, and draft PR merge remain blocked. Zero confirmed novel discoveries.
