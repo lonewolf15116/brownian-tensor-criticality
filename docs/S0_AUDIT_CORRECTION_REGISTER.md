@@ -18,3 +18,8 @@ Source: owner-provided Independent Mathematical Audit of Brownian Tensor Critica
 | Missing dossier raw URL | Unresolved access/path | File exists at docs/S0_EXIT_DOSSIER.md in this branch via GitHub connector; raw URL failure needs separate diagnosis |
 
 **Gate:** S0 not accepted; G1, experiments and PR merge blocked. Reviewer report is evidence of critique, not independently authenticated reproduction.
+
+## Second-review wording refinement (2026-11-02)
+- The inverse branch is continuous on [0,rho) and admits a finite one-sided limit at rho; no regular inverse is asserted at the fold or artificial boundary.
+- Describe its stochastic differential as an **exact pre-stopping Itô equation**, valid for s<rho under compact localization, rather than an unqualified 'exact stopped SDE'.
+- S0 remains revised, not accepted; G1, numerical experiments and PR merge remain blocked.
