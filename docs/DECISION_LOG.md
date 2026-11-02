@@ -14,3 +14,4 @@ Future decisions must record exact scope, evidence, owner and whether authorizat
 | 2026-11-02 | Merge draft PR #1 | NOT AUTHORIZED | Explicit owner restriction |
 
 | 2026-11-02 | Retain S0 restricted theorem and answer-reduced reproduction package for further internal scrutiny; no external release or reviewer outreach | APPROVED restriction | Owner instruction; S0 remains unaccepted, G1 and numerical execution blocked |
+| 2026-11-02 | Authorize final S0 proof-obligation audit: smooth branch selection, tensor-space stopping domains, and singular-set hitting assumptions | APPROVED, documentation/proofs only | No G1, numerical execution, external release or PR merge |
