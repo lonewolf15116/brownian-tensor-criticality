@@ -1,0 +1,204 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=20mm,headheight=23pt]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!40!black,citecolor=blue!40!black,urlcolor=blue!45!black,pdftitle={Thirteen-Point Morse-Index Rigidity for Even Ternary Quartics},pdfauthor={Mahesh Reddy Pagadala}}
+\definecolor{ink}{RGB}{22,39,58}
+\definecolor{muted}{RGB}{98,109,120}
+\definecolor{rulecol}{RGB}{204,212,221}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\idx}{\operatorname{ind}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Crit}{\operatorname{Crit}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\color{muted}BTC-004 \textbar{} Research manuscript v0.3}
+\fancyhead[R]{\footnotesize\color{muted}3 November 2026}
+\fancyfoot[C]{\footnotesize\color{muted}\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rulecol}\leaders\hrule height \headrulewidth\hfill}}
+\setlength{\parskip}{0.6pt}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{nosep,leftmargin=1.4em}
+\setlist[enumerate]{itemsep=3pt,leftmargin=1.6em}
+\begin{document}
+\begin{center}
+{\small\bfseries\color{muted} WORKING MANUSCRIPT \textemdash{} NOT PEER REVIEWED \textemdash{} NOVELTY UNVERIFIED}\par\vspace{6pt}
+{\LARGE\bfseries\color{ink} Thirteen-Point Morse-Index Rigidity\\[4pt] for Even Ternary Quartics}\par\vspace{9pt}
+{\large Mahesh Reddy Pagadala}\par\vspace{4pt}
+{\small 3 November 2026 \quad\textbar\quad Version 0.3 \quad\textbar\quad BTC-004-EQR-001}\par
+\end{center}
+\vspace{4pt}
+\begin{abstract}
+Let $f$ be a real homogeneous ternary quartic containing only monomials even in each coordinate, with arbitrary coefficients. We prove that, if its normalized function on $\RP^2$ is Morse and has thirteen distinct real critical points, then its Morse-index counts $(m_0,m_1,m_2)$ are necessarily $(4,6,3)$ or $(3,6,4)$; both occur. The proof passes to squared coordinates on the standard two-simplex, where the function becomes quadratic. A determinant identity relates the edge curvature, transverse derivative and interior Hessian and yields an exhaustive index classification. The conclusion excludes four other arithmetically admissible thirteen-point triples \emph{within this even-power family}; it makes no assertion of impossibility for general ternary quartics. This manuscript is an internal, AI-assisted research draft. Independent human review and comprehensive prior-art verification remain outstanding.
+\end{abstract}
+
+\section{Introduction and scope}
+A real homogeneous quartic $f\in\mathbb R[x,y,z]_4$ restricts to a smooth even function on the unit sphere and hence defines
+\begin{equation}\label{eq:F}
+ F_f([x:y:z])=\frac{f(x,y,z)}{(x^2+y^2+z^2)^2}\quad\text{on }\RP^2.
+\end{equation}
+Its real projective critical points are the real tensor eigenpoints of $f$, with a unit-norm representative satisfying $\nabla f(x)=4f(x)x$. For a Morse function on $\RP^2$, write $m_j$ for the number of critical points of index $j$, meaning the number of \emph{negative} eigenvalues of the constrained Hessian ($j=0$ for a minimum, $1$ for a saddle, $2$ for a maximum). The Morse--Euler relation reads
+\begin{equation}\label{eq:euler}
+ m_0-m_1+m_2=\chi(\RP^2)=1.
+\end{equation}
+For a generic ternary quartic, the Cartwright--Sturmfels formula for the number of complex projective eigenpoints is $((d-1)^n-1)/(d-2)$ for $n$ variables and degree $d>2$. At $n=3$, $d=4$ this is $(3^3-1)/2=13$, also written $1+3+9=13$ \cite{cartwright2013}. This geometric-series expression is distinct from the support-stratum count $3+6+4$ derived below for a fully real even quartic; the equality of their totals in this setting should not be read as an identification of the strata. Related work addresses eigenpoint counts and topology more generally \cite{abo2017,maccioni2018,bassotu2020,kozhasov2018}.
+
+Here we isolate the family
+\begin{equation}\label{eq:family}
+ f=d_1x^4+d_2y^4+d_3z^4+ax^2y^2+bx^2z^2+cy^2z^2,
+ \qquad d_1,d_2,d_3,a,b,c\in\mathbb R.
+\end{equation}
+The assertion is about this six-parameter family in an \emph{orthonormal} coordinate frame for the denominator in \eqref{eq:F}. The effective coordinate-sign symmetry on $\RP^2$ is $(\mathbb Z/2\mathbb Z)^2$, since simultaneous negation acts trivially. It is not a classification of arbitrary quartics under general linear coordinate changes.
+
+\begin{theorem}[Thirteen-point even-quartic rigidity]\label{thm:main}
+Suppose $f$ has the form \eqref{eq:family} and $F_f$ is Morse with exactly thirteen distinct real critical points on $\RP^2$. Then
+\begin{equation}\label{eq:claim}
+ (m_0,m_1,m_2)\in\{(4,6,3),(3,6,4)\}.
+\end{equation}
+Both index triples occur within the family \eqref{eq:family}.
+\end{theorem}
+
+\section{The simplex and its critical-point strata}
+On the unit sphere let
+\[
+ u=x^2,\qquad v=y^2,\qquad w=z^2,\qquad
+ \Delta_2=\{(u,v,w):u,v,w\ge0,\ u+v+w=1\}.
+\]
+The normalized function becomes the quadratic polynomial
+\begin{equation}\label{eq:Q}
+ Q(u,v,w)=d_1u^2+d_2v^2+d_3w^2+auv+buw+cvw
+\end{equation}
+on $\Delta_2$. A simplex point with precisely $k$ positive coordinates has $2^{k-1}$ projective sign lifts: one for a vertex, two for an open edge and four for the simplex interior. Thus the maximal-real-count support decomposition is $3+6+4=13$; this is a separate count from the generic complex-eigenpoint formula stated in the introduction.
+
+\begin{lemma}[Thirteen-point support decomposition]\label{lem:support}
+Under the hypotheses of Theorem~\ref{thm:main}, the real critical points comprise three vertices, two lifts from a unique stationary point in each open edge and four lifts from a unique stationary point in $\Delta_2^\circ$. In particular, all three edge curvatures are nonzero, and the Hessian $K$ of $Q|_{\Delta_2}$ is nonsingular.
+\end{lemma}
+\begin{proof}
+The vertices always lift to projective critical points, since $f$ is even in each coordinate. On an open edge the restriction of $Q$ is a univariate quadratic. It has at most one stationary point unless it is constant; in that exceptional case the entire corresponding projective coordinate line consists of critical points and $F_f$ is not Morse. A nondegenerate interior critical point of the quadratic $Q|_{\Delta_2}$ is unique, because its gradient is affine-linear with nonsingular Hessian. If the Hessian is singular, any interior stationary point is degenerate, contradicting the Morse assumption. Hence the maximum distinct real critical-point count is $3+3\cdot2+4=13$. Equality requires every open-edge stationary point and a strictly positive interior stationary point. It also forces the asserted nonvanishing conditions.
+\end{proof}
+
+\section{Edge and vertex index transfer}
+Fix the $xy$-edge and introduce affine simplex coordinates $t=u$ and $n=w$, so $v=1-t-n$ and the edge is $n=0$. The constant Hessian of $Q$ in $(t,n)$ is
+\begin{equation}\label{eq:K}
+ K=\begin{pmatrix}\kappa&h\\h&\ell\end{pmatrix},\qquad
+ \begin{cases}
+ \kappa=2(d_1+d_2-a),\\
+ h=2d_2-a+b-c,\\
+ \ell=2(d_2+d_3-c).
+ \end{cases}
+\end{equation}
+The corrected mixed coefficient $h$ is important: both $b$ and $c$ may be nonzero. Denote the strictly interior stationary point by $(t_*,n_*)$, with $n_*>0$, and the open-edge stationary point by $(t_e,0)$, with $t_e\in(0,1)$.
+
+\begin{lemma}[Exact edge-normal identity]\label{lem:edge}
+At the edge stationary point,
+\begin{equation}\label{eq:identity}
+ Q_n(t_e,0)=-\frac{\det K}{\kappa}\,n_*.
+\end{equation}
+In particular,
+\begin{equation}\label{eq:sign}
+ \sgn Q_n(t_e,0)=-\sgn(\det K)\,\sgn(\kappa).
+\end{equation}
+The identity applies to every edge after cyclic relabelling of coordinates.
+\end{lemma}
+\begin{proof}
+Since $Q$ is quadratic and its gradient vanishes at $(t_*,n_*)$, one has the \emph{exact} equality
+\[
+ \binom{Q_t}{Q_n}=K\binom{t-t_*}{n-n_*}.
+\]
+At $(t_e,0)$, the tangential equation $Q_t(t_e,0)=0$ gives $\kappa(t_e-t_*)=hn_*$ and hence $t_e-t_*=hn_*/\kappa$. Substituting into the other component gives
+\[
+ Q_n(t_e,0)=h\frac{h n_*}{\kappa}-\ell n_*
+ =-\frac{\kappa\ell-h^2}{\kappa}\,n_*.
+\]
+This is \eqref{eq:identity}; \eqref{eq:sign} follows from $n_*>0$ and $\kappa\ne0$.
+\end{proof}
+
+\begin{lemma}[Projective index-transfer rule]\label{lem:index}
+For an open-edge critical point, the two constrained-Hessian signs are $\sgn\kappa$ and $\sgn Q_n$. At a vertex, its Morse index equals the number of incident edges with positive curvature.
+\end{lemma}
+\begin{proof}
+Along an open edge, $t$ is a valid local coordinate; its tangential second derivative at the stationary point is $\kappa$. A local transverse coordinate on $\RP^2$ may be taken proportional to the missing homogeneous coordinate $z$. Since $n=w=z^2$ on the unit sphere, the transverse second derivative at $z=0$ is a positive multiple of $Q_n$, while the mixed derivative with the tangential coordinate vanishes by sign symmetry. Thus the asserted signs determine the Morse index.
+
+For the vertex rule, write the restriction of $Q$ to an edge as $\phi(s)$, with $s\in[0,1]$ oriented from either endpoint to the other. Since $\phi'(s)=\kappa(s-s_e)$ and $0<s_e<1$, the derivatives \emph{pointing into the edge} at $s=0$ and $s=1$ are respectively
+\[
+ \phi'(0)=-\kappa s_e,\qquad -\phi'(1)=-\kappa(1-s_e).
+\]
+Both have sign $-\sgn\kappa$. More explicitly, at the vertex $[1:0:0]$ along the $xy$-edge, take the local projective chart $[1:Y:0]$. Its unit-sphere representative has squared coordinates $u=1/(1+Y^2)$ and $v=s=Y^2/(1+Y^2)$. If $\phi(s)=Q(1-s,s,0)$, the restricted projective function is $\phi(s(Y))$, and
+\[
+ \left.\frac{d^2}{dY^2}\phi\!\left(\frac{Y^2}{1+Y^2}\right)\right|_{Y=0}=2\phi'(0).
+\]
+The derivative is inward along the edge and has sign $-\sgn\kappa$; the other vertex and the other incident edges are analogous. Each vertex is incident to exactly two edges in total. An incident edge with positive curvature contributes one negative Hessian direction, while an edge with negative curvature contributes none. Hence the vertex Morse index equals the number of its incident edges with positive curvature.
+\end{proof}
+
+\section{Proof of the rigidity theorem}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Lemma~\ref{lem:support}, the interior Hessian $K$ is nonsingular and each of the three edge curvatures is nonzero. Since the squared-coordinate map restricts to a local diffeomorphism on each full-support sign chamber, all four interior critical points have the same index, determined by the signature of $K$.
+
+\emph{Positive-definite $K$.} Every edge curvature is positive, because it is the second derivative of the quadratic $Q$ along a nonzero tangent direction. By Lemmas~\ref{lem:edge} and \ref{lem:index}, each of the six edge lifts is a saddle, each vertex is a maximum, and the four interior lifts are minima. Thus $(m_0,m_1,m_2)=(4,6,3)$.
+
+\emph{Negative-definite $K$.} Every edge curvature is negative; the six edge lifts are saddles, the vertices are minima, and the interior lifts maxima. Thus $(m_0,m_1,m_2)=(3,6,4)$.
+
+\emph{Indefinite $K$ (i.e., $\det K<0$).} All four interior lifts are saddles. Formula \eqref{eq:sign} shows that every open-edge lift is an extremum: it is a minimum if that edge has positive curvature and a maximum if it has negative curvature. Let $k$ denote the number of positive curvatures among the three edges.
+
+If $k=3$, the six edge lifts are minima, the four interior lifts are saddles and all three vertices are maxima. The resulting alternating sum is $6-4+3=5$, contrary to \eqref{eq:euler}. If $k=0$, minima and maxima are exchanged, with the same contradiction $3-4+6=5$. Since no curvature vanishes, only $k=1$ and $k=2$ remain.
+
+For $k=1$, the two endpoints of the positive-curvature edge are saddles and the opposite vertex is a minimum. The edges contribute two minima and four maxima; the interior contributes four saddles. Hence $(m_0,m_1,m_2)=(3,6,4)$. For $k=2$, the two vertices incident to exactly one positive edge are saddles and their common vertex is a maximum. The edges contribute four minima and two maxima; the interior four saddles. Hence $(m_0,m_1,m_2)=(4,6,3)$. This exhausts the nonsingular possibilities.
+
+For attainment, let $f_+=2x^4+y^4+z^4$. Its simplex quadratic is $Q_+=2u^2+v^2+w^2$, with a positive-definite restricted Hessian, and its unique stationary points on each open edge and in the interior are strictly positive. Its 13 real projective critical points are Morse, giving $(4,6,3)$. The quartic $f_-=-f_+$ exchanges minima and maxima and gives $(3,6,4)$.
+\end{proof}
+
+\section{Explicit critical-point check for the witness}
+For $f_+=2x^4+y^4+z^4$ the simplex quadratic is
+\[
+ Q_+(u,v,w)=2u^2+v^2+w^2.
+\]
+Its constrained Hessian is positive definite. The full-support stationary tuple is
+\[
+ (u_*,v_*,w_*)=\left(\tfrac15,\tfrac25,\tfrac25\right).
+\]
+On the $xy$- and $xz$-edges the stationary tuples are, respectively,
+$(\tfrac13,\tfrac23,0)$ and $(\tfrac13,0,\tfrac23)$; on the $yz$-edge it is $(0,\tfrac12,\tfrac12)$. Each tuple has strictly positive coordinates on its support and yields the prescribed number of projective sign lifts. At each edge the tangential curvature is positive and the inward normal derivative is negative by Lemma~\ref{lem:edge}; these six lifted points are saddles. The three vertices have index two, and the four interior lifts have index zero. Thus $f_+$ has precisely the Morse triple $(4,6,3)$, and $-f_+$ has $(3,6,4)$. This provides a symbolic attainment check independent of numerical root-finding.
+
+\section{Degeneracies, interpretation and limitations}
+The proof uses the maximal-count hypothesis essentially. If an edge curvature vanishes, the restricted quadratic is either nonconstant linear, producing no open-edge stationary point, or constant, producing a nonisolated critical set along the projective edge. If the simplex Hessian is singular, a full-support stationary point is degenerate or absent. If a stationary point reaches a lower-dimensional face, it no longer gives the required number of distinct support lifts and the corresponding transverse or vertex direction degenerates. Each event is incompatible with thirteen distinct real \emph{Morse} points.
+
+The two allowed triples arise by distinct saddle mechanisms. When $K$ is definite, all six saddles lie on the open edges; when $K$ is indefinite, four lie in the interior and two at vertices. The theorem forces a total of six saddles even though their geometric locations differ.
+
+\begin{remark}[Scope of exclusion]
+The arithmetically admissible thirteen-point triples $(1,6,6)$, $(2,6,5)$ and their reversals $(5,6,2)$, $(6,6,1)$ cannot be realized by an even quartic of form \eqref{eq:family}. This does \emph{not} rule them out for arbitrary ternary quartics. If one were realized by a quartic, that quartic could not be even in each variable in any orthonormal frame for the Euclidean normalization \eqref{eq:F}.
+\end{remark}
+
+\section{Relationship to prior work and remaining validation}
+Cartwright--Sturmfels and Abo--Seigal--Sturmfels address the algebraic eigenpoint count and eigenconfiguration framework \cite{cartwright2013,abo2017}. Maccioni studies real eigenvector counts and links to real zero-locus topology \cite{maccioni2018}; Kozhasov proves existence of fully real tensor eigenconfigurations \cite{kozhasov2018}. Basso--Tu develops an intrinsic Morse-theoretic perspective on tensor eigenpairs \cite{bassotu2020}. Michel--Zhilinskii surveys symmetry strata and invariant Morse functions \cite{michel2001}. Vassiliev gives a detailed isotopy classification of Morse polynomials of degree four \emph{on the affine plane} \cite{vassiliev2025}; that function and domain differ from the normalized projective function in \eqref{eq:F}. These are relevant precedents, not proof that the present restriction is new.
+
+A targeted, non-exhaustive comparison of accessible abstracts, selected full texts and related references has not identified a directly equivalent statement in the inspected material. This is \emph{not} a comprehensive originality determination. The frozen internal proof is BTC-004-EQR-001 v1.0 (dated 3 November 2026); the present document is a separate manuscript draft, not an amendment to that record. A prior AI-assisted referee response was audited, but no independent human mathematical review has been completed.
+
+\paragraph{AI-assistance and author responsibility.} AI systems assisted with exploration, algebraic checking, drafting and adversarial critique. The mathematical statements, references and interpretation remain the author's responsibility. No human peer-review endorsement, novel-discovery certification or external independent reproduction is claimed. No new numerical experiments were conducted for this draft.
+
+\paragraph{Release status.} Working draft v0.3, not submitted. External review, full-text prior-art clearance and a publication decision are open. The wider BTC-004 research ledger remains at eight of twenty-one realizable index triples established, thirteen unclassified, and no confirmed novel discoveries.
+
+\begin{thebibliography}{9}\setlength{\itemsep}{2pt}
+\bibitem{cartwright2013} D.~Cartwright and B.~Sturmfels, \emph{The number of eigenvalues of a tensor}, Linear Algebra Appl. \textbf{438} (2013), 942--952. \href{https://doi.org/10.1016/j.laa.2011.05.040}{doi:10.1016/j.laa.2011.05.040}.
+\bibitem{abo2017} H.~Abo, A.~Seigal and B.~Sturmfels, \emph{Eigenconfigurations of tensors}, Contemporary Mathematics \textbf{685} (2017), 1--25. \href{https://doi.org/10.1090/conm/685}{doi:10.1090/conm/685}.
+\bibitem{maccioni2018} M.~Maccioni, \emph{The number of real eigenvectors of a real polynomial}, Bollettino dell'Unione Matematica Italiana (2018). \href{https://doi.org/10.1007/s40574-016-0112-y}{doi:10.1007/s40574-016-0112-y}; \href{https://arxiv.org/abs/1606.04737}{arXiv:1606.04737}.
+\bibitem{kozhasov2018} K.~Kozhasov, \emph{On fully real eigenconfigurations of tensors}, SIAM J. Appl. Algebra Geom. \textbf{2} (2018), 339--347. \href{https://doi.org/10.1137/17M1145902}{doi:10.1137/17M1145902}.
+\bibitem{bassotu2020} J.~M.~V.~Basso and L.~W.~Tu, \emph{Basis-free analysis of singular tuples and eigenpairs of tensors}, \href{https://arxiv.org/abs/2012.07313}{arXiv:2012.07313} (2020 preprint; later revisions available).
+\bibitem{michel2001} L.~Michel and B.~Zhilinskii, \emph{Symmetry, invariants, topology. I. Basic tools}, Physics Reports \textbf{341} (2001), 11--84. \href{https://doi.org/10.1016/S0370-1573(00)00088-0}{doi:10.1016/S0370-1573(00)00088-0}.
+\bibitem{vassiliev2025} V.~A.~Vassiliev, \emph{Isotopy classification of Morse polynomials of degree four on $\mathbb R^2$}, Moscow Mathematical Journal \textbf{25} (2025), no.~2, 249--299. \href{https://arxiv.org/abs/2311.11113}{arXiv:2311.11113}.
+\end{thebibliography}
+\end{document}
