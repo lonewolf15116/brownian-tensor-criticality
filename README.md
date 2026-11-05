@@ -22,7 +22,7 @@ The investigation used Morse theory, algebraic eigenpoint equations, exact-symbo
 
 ### Research closure and evidence limitations
 
-See [BTC-004 closure and roadmap reconciliation](docs/btc004-closure-2026-11-05.md) on the [BTC-004 research archive branch](https://github.com/lonewolf15116/brownian-tensor-criticality/tree/btc004/research-archive-2026-11-05). The closure document records outstanding evidence and verification gaps.
+See the [BTC-004 closure and roadmap reconciliation](docs/btc004-closure-2026-11-05.md), available directly on this branch. Historical research materials are retained on the [BTC-004 research archive branch](https://github.com/lonewolf15116/brownian-tensor-criticality/tree/btc004/research-archive-2026-11-05). The closure document records outstanding evidence and verification gaps.
 
 ## Reproducibility and interpretation
 
